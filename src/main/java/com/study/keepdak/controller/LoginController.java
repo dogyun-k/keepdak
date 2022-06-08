@@ -1,18 +1,17 @@
 package com.study.keepdak.controller;
 
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
-@RestController
+@Controller
+@EnableWebMvc
+@Slf4j
 public class LoginController {
-
     @GetMapping("/")
-    public String index() {
-        return "home";
-    }
-
-    @GetMapping("loginpage")
-    public String loginPage() {
-        return "loginPage";
+    public String home() {
+        log.info("LoginController");
+        return "index";
     }
 }

@@ -5,20 +5,19 @@ import com.study.keepdak.dto.UpdateUserDto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.util.Date;
 
-@Getter
+@Getter @Setter
 @NoArgsConstructor
 @Entity
-public class User {
+public class Member {
 
-    @Id
-    @GeneratedValue(strategy =  GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     private String name;
     private Integer birth;                  // timestamp;
@@ -26,10 +25,10 @@ public class User {
     private String email;
     private String password;
 
-    public static User of() { return new User(); }
+    public static Member of() { return new Member(); }
 
     @Builder
-    public User(
+    public Member(
             String name,
             Integer birth,
             String location,
@@ -43,8 +42,8 @@ public class User {
         this.password = password;
     }
 
-    public static User form(CreateUserDto createUserDto) {
-        return User.builder()
+    public static Member form(CreateUserDto createUserDto) {
+        return Member.builder()
                 .name(createUserDto.getName())
                 .birth(createUserDto.getBirth())
                 .location(createUserDto.getLocation())
