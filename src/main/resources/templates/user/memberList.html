@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header" />
+<body>
+
+<div class="container">
+    <div th:replace="fragments/bodyHeader :: bodyHeader" />
+    <div>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>ID</th>
+                <th>이름</th>
+                <th>생일</th>
+                <th>지역</th>
+                <th>이메일</th>
+                <th>수정</th>
+                <th>삭제</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="member : ${members}">
+                <td></td>
+                <td th:text="${member.id}"></td>
+                <td th:text="${member.name}"></td>
+                <td th:text="${member.birth}"></td>
+                <td th:text="${member.location}"></td>
+                <td th:text="${member.email}"></td>
+                <td>
+                    <a class="btn btn-lg btn-secondary" href="/member/update">수정</a>
+                </td>
+                <td>
+                    <form action="#" th:action="@{'/member/delete/{id}'(id=${member.id})}" th:method="post" >
+                        <button type="submit" class="btn">
+                            Delete
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div th:replace="fragments/footer :: footer" />
+
+</div> <!-- /container -->
+
+</body>
+</html>

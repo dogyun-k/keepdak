@@ -7,30 +7,43 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter @Setter
 @NoArgsConstructor
 @Entity
 public class Member {
 
-    @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
     private String name;
-    private Integer birth;                  // timestamp;
+    private LocalDateTime birth;                  // timestamp;
     private String location;
     private String email;
     private String password;
+
+    @OneToMany(mappedBy = "member")
+    private List<Schedule> scheduleList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "member")
+    private List<Document> documentList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "member")
+    private List<Board> boardList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "member")
+    private List<BreedingLog> breedingLogList = new ArrayList<>();
 
     public static Member of() { return new Member(); }
 
     @Builder
     public Member(
             String name,
-            Integer birth,
+            LocalDateTime birth,
             String location,
             String email,
             String password

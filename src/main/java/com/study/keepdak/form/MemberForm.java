@@ -1,17 +1,18 @@
-package com.study.keepdak.dto;
+package com.study.keepdak.form;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
 @NoArgsConstructor
-@Getter
-public class CreateUserDto {
+@Getter @Setter
+public class MemberForm {
+    private Long id;
     private String name;
-    private LocalDateTime birth;      // timestamp;
+   // private LocalDateTime birth;      // timestamp;
     private String location;
     private String email;
     private String password;
